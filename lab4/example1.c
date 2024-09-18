@@ -16,7 +16,7 @@ int main(){
         printf("Fork failed");
         return 1;
     } else {
-        printf("Parrent process is executed\nHello from - %d - %d\n", getpid(), n);
+        printf("Parent process is executed\nHello from - %d - %d\n", getpid(), n);
         kill(pid, SIGKILL);
         printf("Killed child process - %d\n", pid);
         wait(NULL);
