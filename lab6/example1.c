@@ -4,16 +4,22 @@
 #include <stdlib.h>
 
 void handle_signal(int sig) {
-    printf("Signal: %d\n", sig);
-    exit(1);
+    if (sig == SIGINT){
+        printf("Caught SIGINT!\n");
+        exit(0);
+    } else if (sig == SIGQUIT){
+        printf("Caught SIGQUIT!\n");
+        abort();
+    } else {
+        printf("Caught SIGTERM!\n");
+        exit(1);
+    }
 }
 
 int main() {
     signal(SIGINT, handle_signal);
     signal(SIGQUIT, handle_signal);
     signal(SIGTERM, handle_signal);
-
-    char buffer[1024];
 
     while (1) {
         printf("Hello world!\n");
